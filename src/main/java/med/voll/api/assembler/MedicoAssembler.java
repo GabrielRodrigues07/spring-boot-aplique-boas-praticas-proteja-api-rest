@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import med.voll.api.dto.AtualizacaoMedicoDTO;
 import med.voll.api.dto.MedicoDTO;
 import med.voll.api.dto.MedicoResumoDTO;
-import med.voll.api.medico.Medico;
+import med.voll.api.domain.medico.Medico;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

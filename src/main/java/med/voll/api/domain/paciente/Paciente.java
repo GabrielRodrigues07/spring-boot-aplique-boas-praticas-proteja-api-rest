@@ -1,8 +1,8 @@
-package med.voll.api.paciente;
+package med.voll.api.domain.paciente;
 
 import lombok.*;
 import med.voll.api.dto.AtualizacaoPacienteDTO;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 import javax.persistence.*;
 

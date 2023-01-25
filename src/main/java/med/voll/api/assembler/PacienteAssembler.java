@@ -3,7 +3,7 @@ package med.voll.api.assembler;
 import lombok.AllArgsConstructor;
 import med.voll.api.dto.PacienteDTO;
 import med.voll.api.dto.PacienteResumoDTO;
-import med.voll.api.paciente.Paciente;
+import med.voll.api.domain.paciente.Paciente;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
