@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/medicos")
@@ -56,5 +57,11 @@ public class MedicoController {
         var medico = repository.getReferenceById(idMedico);
         medico.excluir();
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id) {
+        Optional<Medico> optionalMedico = repository.findById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(optionalMedico.get()));
     }
 }
