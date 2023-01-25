@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pacientes")
@@ -31,6 +32,7 @@ public class PacienteController {
     public ResponseEntity cadastrar(@RequestBody @Valid PacienteDTO pacienteDTO, UriComponentsBuilder uriBuilder) {
         Paciente paciente = pacienteAssembler.toEntity(pacienteDTO);
         repository.save(paciente);
+        paciente.setAtivo(true);
         var uri = uriBuilder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoPaciente(paciente));
     }
@@ -55,5 +57,11 @@ public class PacienteController {
         var paciente = repository.getReferenceById(idPaciente);
         paciente.excluir();
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity detalhar(@PathVariable Long id) {
+        Optional<Paciente> optionalPaciente = repository.findById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoPaciente(optionalPaciente.get()));
     }
 }
